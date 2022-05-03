@@ -19,17 +19,18 @@ COS=lambda x: int(math.cos(x * 3.141592653589 / 180))
 # To rotate an object
 
 def rotate(array, radians):
+    """Rotate an array of points by user-defined number of radians"""
     x_arr = []
     y_arr = []
     for i in range(len(array)):
         xy = tuple(array[i, :])
-        xfin, yfin = rotate_origin_only(xy, radians)
+        xfin, yfin = rotate_origin(xy, radians)
         x_arr.append(xfin)
         y_arr.append(yfin)
     return np.array(x_arr), np.array(y_arr)
 
-def rotate_origin_only(xy, radians):
-    """Only rotate a point around the origin (0, 0)."""
+def rotate_origin(xy, radians):
+    """Rotate a point around (0, 0)"""
     x, y = xy
     xx = x * math.cos(radians) + y * math.sin(radians)
     yy = -x * math.sin(radians) + y * math.cos(radians)
